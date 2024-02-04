@@ -12,6 +12,6 @@ import org.junit.platform.suite.api.Suite;
 @IncludeEngines("cucumber")
 @SelectClasspathResource("com/example/restservice")
 @ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "pretty")
-@ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "html:target/cucumber-reports.html")
+@ConfigurationParameter(key = PLUGIN_PROPERTY_NAME, value = "html:reports/cucumber-reports.html")
 @ConfigurationParameter(key = GLUE_PROPERTY_NAME, value = "com.example.restservice")
 public class RunCucumberTest {}
