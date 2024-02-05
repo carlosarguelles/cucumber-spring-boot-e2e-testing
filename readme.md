@@ -1,6 +1,6 @@
 # Spring Boot Java Project with Cucumber
 
-On this guide, we will setup Cucumber on a Spring Boot Project and run acceptance tests with Junit Platform Engine. Cucumber Framework provides a way to write and run acceptance tests written in a behaviour-driven development (BDD) style.
+On this guide, we will set up Cucumber on a Spring Boot Project and run acceptance tests with Junit Platform Engine. Cucumber Framework provides a way to write and run acceptance tests written in a behavior-driven development (BDD) style.
 
 ## Overview
 
@@ -77,7 +77,7 @@ This will configure Cucumber with two plugins:
 
 ## Creating a Feature Specification
 
-In this specification we use a Scenario Outline along with Examples. This allows parameterize a scenario and define different inputs for testing the same behavior.
+In this specification we use a Scenario Outline along with Examples. This allows to parameterize a scenario and define different inputs for testing the same behavior.
 
 We will create a Feature Specification File in Gherkin Language in the directory `src/test/resources/com/example/restservice` called `greeting.feature`
 
@@ -99,7 +99,7 @@ Feature: Greeting
       | Tommy & Verónica | Hello, Tommy & Verónica! |
 ```
 
-We will test the Spring Boot service that responds to the HTTP GET requests to endpoint `/greeting`. The Scenario Outline is used to define a template for the scenario, and the Examples table provides different sets of values for the parameters ("<name>" and "<expected_greeting>"). This way, we can test various cases without duplicating the common steps. 
+We will test the Spring Boot service that responds to the HTTP GET requests to endpoint `/greeting`. The Scenario Outline is used to define a template for the scenario, and the Examples' table provides different sets of values for the parameters ("\<name\>" and "\<expected_greeting\>"). This way, we can test various cases without duplicating the common steps. 
 
 ### Creating the Glue Definition File
 
@@ -124,7 +124,7 @@ Now we are ready to start writing each step defined in the Greeting Feature Spec
 
 ### Defining Steps
 
-In the `GreetingDefinitions` class, we will define three public functions that will be decorated as defined in the feature file. In Gherkin, each step stars with a preposition or an adverb (Given, When, Then, And, But). For further reading checkout [Cucumber API Definition](https://cucumber.io/docs/cucumber/api/?lang=java).
+In the `GreetingDefinitions` class, we will define three public functions that will be decorated as defined in the feature file. In Gherkin, each step starts with a preposition or an adverb (Given, When, Then, And, But). For further reading checkout [Cucumber API Definition](https://cucumber.io/docs/cucumber/api/?lang=java).
 
 ```java
 @SpringBootTest
@@ -152,7 +152,7 @@ public class GreetingDefinitions {
 }
 ```
 
-Each string inside of the Steps Decorators must match with the definition in the Greeting Feature File. We define the parameters using brackets and inside them, the type of the parameter. Then, we can access to the value of these parameters in the function itself. [Step Definitions Reference](https://cucumber.io/docs/cucumber/step-definitions/?lang=java). We define a variable called `result` to maintain the state of the test. 
+Each string inside the Steps Decorators must match with the definition in the Greeting Feature File. We define the parameters using brackets and inside them, the type of the parameter. Then, we can access to the value of these parameters in the function itself. [Step Definitions Reference](https://cucumber.io/docs/cucumber/step-definitions/?lang=java). We define a variable called `result` to maintain the state of the test. 
 
 ## Running the Tests
 
@@ -170,8 +170,14 @@ We can see the output of each test using two additional flags
 
 ## Reviewing Reports
 
-As we set up Cucumber's HTML plugin, we can see the results of our scenario. Open the `reports/cucumber-reports.html`
+As we set up Cucumber's HTML plugin, we can see the [results](https://carlosarguelles.github.io/cucumber-spring-boot-e2e-testing/cucumber-reports.html) of our tests. Open the `reports/cucumber-reports.html` file in the browser.
 
 ![Cucumber HTML Report](https://github.com/carlosarguelles/cucumber-spring-boot-e2e-testing/assets/70742476/a9397c14-09bf-48c1-84e7-8f6c31d1a5c1)
 
+In this report we can see the result of each feature and scenario. In our case, the last example of the scenario outline failed because we did not escape the ampersand character (&), this is a reserved character in URL encoding. We can see the details of each example as shown in the following picture:
+
 ![Cucumber HTML Report Failed Scenario](https://github.com/carlosarguelles/cucumber-spring-boot-e2e-testing/assets/70742476/3048d5ea-d188-4ff2-add9-2224f73066a4)
+
+The failed example represents an edge case where the client submits a malformed URL. Despite this deviation from the expected input, the service responds in a manner consistent with the predefined behavior.
+
+We successfully conducted acceptance tests of the Spring Boot application with Cucumber and Junit. This approach allows describing the behavior of the features in scenarios, making it easy to write and understand test cases. This scenario-based approach aligns well with the way users and developers interact with the application, providing a natural way to express and test user-centric functionality.
