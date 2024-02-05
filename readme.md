@@ -172,4 +172,6 @@ We can see the output of each test using two additional flags
 
 As we set up Cucumber's HTML plugin, we can see the results of our scenario. Open the `reports/cucumber-reports.html`
 
-<!-- TODO: Image -->
+![Cucumber HTML Report](https://github.com/carlosarguelles/cucumber-spring-boot-e2e-testing/assets/70742476/a9397c14-09bf-48c1-84e7-8f6c31d1a5c1)
+
+![Cucumber HTML Report Failed Scenario](https://github.com/carlosarguelles/cucumber-spring-boot-e2e-testing/assets/70742476/3048d5ea-d188-4ff2-add9-2224f73066a4)
